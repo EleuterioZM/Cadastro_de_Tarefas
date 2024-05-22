@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -89,7 +90,16 @@
                 <input type="text" class="form-control" id="criterios" name="criterios">
             </div>
         </div>
-        <button type="submit" class="btn btn-success">Cadastrar</button>
+     
+
+        <div class="row mt-3">
+                    <div class="col-md-2">
+                    <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="FRMListarClientes.php" class="btn btn-primary btn-block">Voltar</a>
+                    </div>
+                </div>
     </form>
 </div>
 

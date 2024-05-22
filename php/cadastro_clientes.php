@@ -37,8 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssssssssssss", $empresa, $endereco, $contacto, $email, $data, $objecto, $contabilidadeFiscalidade, $auditoria, $rh, $acessoria_juridica, $expectativa, $criterios);
 
     if ($stmt->execute()) {
-        echo "Dados inseridos com sucesso!";
-    } else {
+        // Redireciona para a página de listagem de clientes após o cadastro bem-sucedido
+        header("Location: /SCT/Cadastro_de_Tarefas/clientes/FRMListarClientes.php?success=true");
+        exit(); // Certifique-se de sair após o redirecionamento
+    }
+    
+     else {
         echo "Erro ao inserir os dados: " . $stmt->error;
     }
 
