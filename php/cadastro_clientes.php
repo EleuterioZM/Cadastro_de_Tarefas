@@ -4,29 +4,20 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Inclui a classe de conexão ao banco de dados
+require_once 'Connection/Database.php';
+
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conecta ao banco de dados
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "clientestarefasdb";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Verifica a conexão
-    if ($conn->connect_error) {
-        die("Erro de conexão: " . $conn->connect_error);
-    }
+    // Instancia a classe Database
+    $db = new Database();
 
     // Prepara e executa a instrução SQL para inserir os dados no banco de dados
-    $stmt = $conn->prepare("INSERT INTO clientes (Empresa, Endereco, Contacto, Email, Data, Objecto, ContabilidadeFiscalidade, Auditoria, Rh, Acessoria_Juridica, Expectativa, Criterios) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    
-    if ($stmt === false) {
-        die("Erro na preparação da declaração: " . $conn->error);
-    }
+    $stmt = $db->prepare("INSERT INTO clientes (Empresa, Endereco, Contacto, Email, Data, Objecto, ContabilidadeFiscalidade, Auditoria, Rh, Acessoria_Juridica, Expectativa, Criterios) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    $stmt->bind_param("ssssssssssss", $empresa, $endereco, $contacto, $email, $data, $objecto, $contabilidadeFiscalidade, $auditoria, $rh, $acessoria_juridica, $expectativa, $criterios);
+    if ($stmt === false) {
+        die("Erro na preparação da declaração: " . $db->conn->error);
+    }
 
     // Atribui os valores dos campos do formulário às variáveis
     $empresa = $_POST['empresa'];
@@ -42,15 +33,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $expectativa = $_POST['expectativa'];
     $criterios = $_POST['criterios'];
 
-    // Executa a instrução SQL
+    // Vincula os parâmetros e executa a instrução SQL
+    $stmt->bind_param("ssssssssssss", $empresa, $endereco, $contacto, $email, $data, $objecto, $contabilidadeFiscalidade, $auditoria, $rh, $acessoria_juridica, $expectativa, $criterios);
+
     if ($stmt->execute()) {
         echo "Dados inseridos com sucesso!";
     } else {
         echo "Erro ao inserir os dados: " . $stmt->error;
     }
 
-    // Fecha a conexão com o banco de dados
+    // Fecha a instrução e a conexão com o banco de dados
     $stmt->close();
-    $conn->close();
+    $db->close();
 }
 ?>
