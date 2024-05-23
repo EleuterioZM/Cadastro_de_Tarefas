@@ -65,6 +65,10 @@
         </div>
     </div>
     <?php endif; ?>
+    <div class="text-right mb-3">
+        <button class="btn btn-success mr-2" onclick="location.href='Cadastrar.php';">Cadastrar</button>
+        <button class="btn btn-primary" onclick="location.href='gerar_relatorio.php';">Gerar Relatório</button>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -114,7 +118,7 @@
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $counter++ . "</td>"; // Adiciona numeração para cada linha
+                    echo "<td>" . $counter++ . "</td>"; //olas
                     echo "<td>" . $row["id"] . "</td>";
                     echo "<td>" . $row["Empresa"] . "</td>";
                     echo "<td>" . $row["Endereco"] . "</td>";
@@ -163,10 +167,7 @@
             <?php endif; ?>
         </ul>
     </nav>
-    <div class="text-right mb-3">
-        <button class="btn btn-success mr-2" onclick="location.href='Cadastrar.php';">Cadastrar</button>
-        <button class="btn btn-primary" onclick="location.href='gerar_relatorio.php';">Gerar Relatório</button>
-    </div>
+   
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
