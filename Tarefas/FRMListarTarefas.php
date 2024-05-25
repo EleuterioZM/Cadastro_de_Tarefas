@@ -67,7 +67,8 @@
     <?php endif; ?>
     <div class="text-right mb-3">
         <button class="btn btn-success mr-2" onclick="location.href='Cadastrar.php';">Cadastrar Tarefa</button>
-        <button class="btn btn-primary" onclick="location.href='gerar_relatorio_tarefas.php';">Gerar Relatório</button>
+        <button class="btn btn-primary" onclick="gerarRelatorio()">Gerar Relatório</button>
+
     </div>
     <table class="table table-striped">
         <thead>
@@ -206,6 +207,15 @@
             showDeletedToast();
         }
     });
+
+   
+    function gerarRelatorio() {
+        // Redireciona para o script PHP que gera o relatório
+        window.location.href = '../Relatorios/gerar_relatorio_tarefas.php';
+     
+    }
+
+
 </script>
 </body>
 </html>
