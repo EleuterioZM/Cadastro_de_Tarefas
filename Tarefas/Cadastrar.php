@@ -19,8 +19,8 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 90%; /* Largura aumentada para ocupar 90% da tela */
-            max-width: 1200px; /* Largura máxima definida */
+            width: 90%;
+            max-width: 1200px;
         }
         .form-control {
             max-width: 100%;
@@ -76,14 +76,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('#taskForm').submit(function(event) {
-            event.preventDefault();
-            // Aqui você pode adicionar a lógica para enviar o formulário
-            alert('Tarefa cadastrada com sucesso!');
-        });
-    });
-</script>
 </body>
 </html>
