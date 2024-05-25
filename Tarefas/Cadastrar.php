@@ -19,8 +19,8 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            width: 100%;
+            width: 90%; /* Largura aumentada para ocupar 90% da tela */
+            max-width: 1200px; /* Largura máxima definida */
         }
         .form-control {
             max-width: 100%;
@@ -30,7 +30,7 @@
 <body>
 
 <div class="form-container">
-    <form id="taskForm">
+    <form id="taskForm" method="post" action="../php/Tarefas/cadastro_tarefas.php">
         <h5 class="text-center mb-4">Cadastro de Tarefas</h5>
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -62,7 +62,14 @@
                 <textarea class="form-control" id="observacoes" name="observacoes"></textarea>
             </div>
         </div>
-        <button type="submit" class="btn btn-success">Cadastrar</button>
+        <div class="row mt-3">
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+            </div>
+            <div class="col-md-2">
+                <a href="FRMListarTarefas.php" class="btn btn-primary btn-block">Voltar</a>
+            </div>
+        </div>
     </form>
 </div>
 
