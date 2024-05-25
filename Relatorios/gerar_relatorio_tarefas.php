@@ -35,19 +35,23 @@ $sql = "SELECT * FROM tarefasdiarias";
 $result = $conn->query($sql);
 
 // Títulos das colunas (com cor preta, centralizados e em negrito)
-$pdf->SetTextColor(0, 0, 0); // Define a cor do texto para preto
+$pdf->SetTextColor(255, 255, 255); // Define a cor do texto como branco
+$pdf->SetFillColor(102, 153, 204); // Cor de fundo do cabeçalho: azul meio
 $pdf->SetFont('helvetica', 'B', 10); // Define a fonte como negrito e tamanho 10 para os títulos
 
-$pdf->Cell(15, 10, 'Item', 1, 0, 'C');
-$pdf->Cell(35, 10, 'Atividade', 1, 0, 'C');
-$pdf->Cell(35, 10, 'Recursos necess', 1, 0, 'C'); // Abrevia "Recursos Necessários"
-$pdf->Cell(40, 10, 'Responsável', 1, 0, 'C');
-$pdf->Cell(25, 10, 'Data de Início', 1, 0, 'C');
-$pdf->Cell(25, 10, 'Data de Fim', 1, 0, 'C');
-$pdf->Cell(30, 10, 'Observações', 1, 1, 'C'); // Diminui a largura da coluna "Observações"
+$pdf->Cell(15, 10, 'Item', 1, 0, 'C', 1);
+$pdf->Cell(35, 10, 'Atividade', 1, 0, 'C', 1);
+$pdf->Cell(35, 10, 'Recursos necess', 1, 0, 'C', 1); // Abrevia "Recursos Necessários"
+$pdf->Cell(40, 10, 'Responsável', 1, 0, 'C', 1);
+$pdf->Cell(25, 10, 'Data de Início', 1, 0, 'C', 1);
+$pdf->Cell(25, 10, 'Data de Fim', 1, 0, 'C', 1);
+$pdf->Cell(30, 10, 'Observações', 1, 1, 'C', 1); // Diminui a largura da coluna "Observações"
 
 // Define o estilo de fonte para os dados (sem negrito)
 $pdf->SetFont('helvetica', '', 10);
+
+// Define a cor do texto para preto para as células de dados
+$pdf->SetTextColor(0, 0, 0);
 
 // Dados
 if ($result->num_rows > 0) {
