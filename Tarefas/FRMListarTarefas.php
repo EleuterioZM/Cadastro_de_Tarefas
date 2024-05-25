@@ -66,7 +66,7 @@
     </div>
     <?php endif; ?>
     <div class="text-right mb-3">
-        <button class="btn btn-success mr-2" onclick="location.href='CadastrarTarefa.php';">Cadastrar Tarefa</button>
+        <button class="btn btn-success mr-2" onclick="location.href='Cadastrar.php';">Cadastrar Tarefa</button>
         <button class="btn btn-primary" onclick="location.href='gerar_relatorio_tarefas.php';">Gerar Relatório</button>
     </div>
     <table class="table table-striped">
@@ -127,7 +127,8 @@
                     echo "<a href='visualizar_tarefa.php?id=" . $row["Item"]
                     . "'><i class='fas fa-eye text-success'></i></a>";
                     echo "<a href='editar_tarefa.php?id=" . $row["Item"] . "'><i class='fas fa-edit text-primary'></i></a>";
-                    echo "<a href='apagar_tarefa.php?id=" . $row["Item"] . "'><i class='fas fa-trash-alt text-danger'></i></a>";
+                    echo "<a href='apagar_tarefa.php?item=" . $row["Item"] . "'><i class='fas fa-trash-alt text-danger'></i></a>";
+
                     echo "</td>";
                     echo "</tr>";
                 }
