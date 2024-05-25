@@ -73,7 +73,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Item</th>
+            
                 <th>Atividade</th>
                 <th>Responsável</th>
                 <th>Data de Início</th>
@@ -118,7 +118,7 @@
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $counter++ . "</td>";
-                    echo "<td>" . $row["Item"] . "</td>";
+                 
                     echo "<td>" . $row["Actividade"] . "</td>";
                     echo "<td>" . $row["Resp_Actividade"] . "</td>";
                     echo "<td>" . $row["Data_Inicio"] . "</td>";
