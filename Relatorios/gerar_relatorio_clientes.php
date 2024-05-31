@@ -4,6 +4,24 @@ require_once('../tcpdf/tcpdf.php');
 // Função para adicionar cabeçalho e tabela
 function addTable($pdf, $headers, $data, $adjustIdCell = false)
 {
+    // Calcula a largura total da tabela
+    $tableWidth = 0;
+    foreach ($headers as $index => $header) {
+        if ($adjustIdCell && $index === 0) {
+            $tableWidth += 0.1 * $pdf->getPageWidth();
+        } elseif ($index === 4) {
+            $tableWidth += 0.25 * $pdf->getPageWidth();
+        } elseif ($index === 5) {
+            $tableWidth += 0.15 * $pdf->getPageWidth();
+        } else {
+            $tableWidth += 0.15 * $pdf->getPageWidth();
+        }
+    }
+
+    // Ajusta margens para centralizar a tabela
+    $pdf->SetLeftMargin(($pdf->getPageWidth() - $tableWidth) / 2);
+    $pdf->SetRightMargin(($pdf->getPageWidth() - $tableWidth) / 2);
+
     // Adiciona o cabeçalho
     $pdf->SetFont('helvetica', 'B', 10);
     $pdf->SetFillColor(102, 153, 204); // Cor de fundo do cabeçalho
@@ -11,16 +29,12 @@ function addTable($pdf, $headers, $data, $adjustIdCell = false)
 
     foreach ($headers as $index => $header) {
         if ($adjustIdCell && $index === 0) {
-            // Define a largura da célula do ID com 10% da largura da página
             $pdf->Cell(0.1 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
         } elseif ($index === 4) {
-            // Define a largura da célula do Email com 30% da largura da página
             $pdf->Cell(0.25 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
         } elseif ($index === 5) {
-            // Define a largura da célula da Data com 20% da largura da página
             $pdf->Cell(0.15 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
         } else {
-            // Usa a largura padrão da célula (15% da largura da página)
             $pdf->Cell(0.15 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
         }
     }
@@ -33,15 +47,13 @@ function addTable($pdf, $headers, $data, $adjustIdCell = false)
     // Adiciona os dados
     foreach ($data as $row) {
         foreach ($row as $index => $value) {
-            // Define a largura da célula com base no índice da coluna
             if ($adjustIdCell && $index === 0) {
                 $cellWidth = 0.1 * $pdf->getPageWidth();
             } elseif ($index === 4) {
-                // Verifica se o email pode ser quebrado em duas partes
                 $emailParts = explode('@', $value);
                 $email = isset($emailParts[1]) ? $emailParts[0] . "\n@" . $emailParts[1] : $value;
                 $pdf->Cell(0.25 * $pdf->getPageWidth(), 10, $email, 1, 0, 'C');
-                continue; // Passa para a próxima iteração para não adicionar novamente
+                continue;
             } elseif ($index === 5) {
                 $cellWidth = 0.15 * $pdf->getPageWidth();
             } else {
@@ -108,18 +120,13 @@ if ($result2->num_rows > 0) {
 // Adiciona uma nova página para a segunda tabela
 $pdf->AddPage();
 
-// Configurações de estilo para o cabeçalho da segunda tabela
-$pdf->SetFont('helvetica', 'B', 10);
-$pdf->SetFillColor(102, 153, 204); // Cor de fundo do cabeçalho
-$pdf->SetTextColor(255, 255, 255); // Cor do texto do cabeçalho
-
 // Cabeçalho para a segunda tabela
 $headers2 = ['ID', 'Objecto', 'Contabilidade', 'Auditoria', 'RH'];
 
 $pdf->Ln();
 
 // Adiciona a segunda tabela
-addTable($pdf, $headers2, $data2);
+addTable($pdf, $headers2, $data2, true); // Passa true para ajustar a célula do ID
 
 $pdf->Output('lista_clientes.pdf', 'D');
 ?>
