@@ -4,9 +4,12 @@ require_once('../tcpdf/tcpdf.php');
 // Função para adicionar cabeçalho e tabela
 function addTable($pdf, $headers, $data, $adjustIdCell = false)
 {
+    // Define o número máximo de linhas por página
+    $maxRowsPerPage = 22;
+
+    // Adiciona o título centralizado
     $pdf->SetFont('helvetica', 'B', 16);
     $pdf->Cell(0, 10, 'Relatório de Clientes', 0, 1, 'C');
-   
 
     // Calcula a largura total da tabela
     $tableWidth = 0;
@@ -49,7 +52,31 @@ function addTable($pdf, $headers, $data, $adjustIdCell = false)
     $pdf->SetTextColor(0, 0, 0); // Cor do texto preto
 
     // Adiciona os dados
+    $rowCount = 0;
     foreach ($data as $row) {
+        // Verifica se atingiu o limite de linhas por página
+        if ($rowCount >= $maxRowsPerPage) {
+            // Adiciona uma nova página
+            $pdf->AddPage();
+            // Recria o título centralizado
+            $pdf->Cell(0, 10, 'Relatório de Clientes', 0, 1, 'C');
+            // Recria o cabeçalho
+            foreach ($headers as $index => $header) {
+                if ($adjustIdCell && $index === 0) {
+                    $pdf->Cell(0.1 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
+                } elseif ($index === 4) {
+                    $pdf->Cell(0.25 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
+                } elseif ($index === 5) {
+                    $pdf->Cell(0.15 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
+                } else {
+                    $pdf->Cell(0.15 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
+                }
+            }
+            $pdf->Ln();
+            // Reinicia o contador de linhas
+            $rowCount = 0;
+        }
+        // Adiciona os dados da linha
         foreach ($row as $index => $value) {
             if ($adjustIdCell && $index === 0) {
                 $cellWidth = 0.1 * $pdf->getPageWidth();
@@ -66,8 +93,11 @@ function addTable($pdf, $headers, $data, $adjustIdCell = false)
             $pdf->Cell($cellWidth, 10, $value, 1, 0, 'C');
         }
         $pdf->Ln();
+        // Incrementa o contador de linhas
+        $rowCount++;
     }
 }
+
 
 // Cria um novo documento PDF na orientação Retrato (vertical) e tamanho A4
 $pdf = new TCPDF('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -109,6 +139,11 @@ if ($result1->num_rows > 0) {
 $headers1 = ['ID', 'Empresa', 'Endereço', 'Contacto', 'Email', 'Data'];
 addTable($pdf, $headers1, $data1, true); // Passa true para ajustar a célula do ID
 
+// Verifica se é necessário adicionar uma nova página após a primeira tabela
+if ($pdf->getY() > $pdf->getPageHeight() - 20) {
+    $pdf->AddPage();
+}
+
 // Consulta SQL para os dados da segunda tabela
 $sql2 = "SELECT id, Objecto, ContabilidadeFiscalidade, Auditoria, Rh FROM clientes";
 $result2 = $conn->query($sql2);
@@ -132,5 +167,11 @@ $pdf->Ln();
 // Adiciona a segunda tabela
 addTable($pdf, $headers2, $data2, true); // Passa true para ajustar a célula do ID
 
+// Verifica se é necessário adicionar uma nova página após a segunda tabela
+if ($pdf->getY() > $pdf->getPageHeight() - 20) {
+    $pdf->AddPage();
+}
+
 $pdf->Output('Relatorio_Clientes.pdf', 'D');
 ?>
+
