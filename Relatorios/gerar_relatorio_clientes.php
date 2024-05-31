@@ -11,17 +11,17 @@ function addTable($pdf, $headers, $data, $adjustIdCell = false)
 
     foreach ($headers as $index => $header) {
         if ($adjustIdCell && $index === 0) {
-            // Define a largura da célula do ID com um valor fixo de 15mm
-            $pdf->Cell(15, 10, $header, 1, 0, 'C', 1);
+            // Define a largura da célula do ID com 10% da largura da página
+            $pdf->Cell(0.1 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
         } elseif ($index === 4) {
-            // Define a largura da célula do Email com um valor fixo de 45mm para permitir quebrar a linha
-            $pdf->Cell(45, 10, $header, 1, 0, 'C', 1);
+            // Define a largura da célula do Email com 30% da largura da página
+            $pdf->Cell(0.25 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
         } elseif ($index === 5) {
-            // Define a largura da célula da Data com um valor fixo de 25mm
-            $pdf->Cell(25, 10, $header, 1, 0, 'C', 1);
+            // Define a largura da célula da Data com 20% da largura da página
+            $pdf->Cell(0.15 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
         } else {
-            // Usa a largura padrão da célula
-            $pdf->Cell(40, 10, $header, 1, 0, 'C', 1);
+            // Usa a largura padrão da célula (15% da largura da página)
+            $pdf->Cell(0.15 * $pdf->getPageWidth(), 10, $header, 1, 0, 'C', 1);
         }
     }
     $pdf->Ln();
@@ -35,17 +35,17 @@ function addTable($pdf, $headers, $data, $adjustIdCell = false)
         foreach ($row as $index => $value) {
             // Define a largura da célula com base no índice da coluna
             if ($adjustIdCell && $index === 0) {
-                $cellWidth = 15;
+                $cellWidth = 0.1 * $pdf->getPageWidth();
             } elseif ($index === 4) {
                 // Verifica se o email pode ser quebrado em duas partes
                 $emailParts = explode('@', $value);
                 $email = isset($emailParts[1]) ? $emailParts[0] . "\n@" . $emailParts[1] : $value;
-                $pdf->Cell(45, 10, $email, 1, 0, 'C');
+                $pdf->Cell(0.25 * $pdf->getPageWidth(), 10, $email, 1, 0, 'C');
                 continue; // Passa para a próxima iteração para não adicionar novamente
             } elseif ($index === 5) {
-                $cellWidth = 25;
+                $cellWidth = 0.15 * $pdf->getPageWidth();
             } else {
-                $cellWidth = 40;
+                $cellWidth = 0.15 * $pdf->getPageWidth();
             }
             $pdf->Cell($cellWidth, 10, $value, 1, 0, 'C');
         }
