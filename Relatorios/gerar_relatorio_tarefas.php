@@ -68,7 +68,7 @@ if ($result->num_rows > 0) {
     $pdf->Cell(0, 10, 'Nenhum registro encontrado.', 0, 1, 'C');
 }
 
-$pdf->Output('relatorio_tarefas.pdf', 'D');
+$pdf->Output('Relatorio_Tarefas.pdf', 'D');
 
 $conn->close();
 ?>

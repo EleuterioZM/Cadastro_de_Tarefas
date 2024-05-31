@@ -4,6 +4,10 @@ require_once('../tcpdf/tcpdf.php');
 // Função para adicionar cabeçalho e tabela
 function addTable($pdf, $headers, $data, $adjustIdCell = false)
 {
+    $pdf->SetFont('helvetica', 'B', 16);
+    $pdf->Cell(0, 10, 'Relatório de Clientes', 0, 1, 'C');
+   
+
     // Calcula a largura total da tabela
     $tableWidth = 0;
     foreach ($headers as $index => $header) {
@@ -73,7 +77,7 @@ $pdf->AddPage();
 // Configurações do documento
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Seu Nome');
-$pdf->SetTitle('Lista de Clientes');
+$pdf->SetTitle('Relatório de Clientes');
 $pdf->SetSubject('Relatório de Clientes');
 $pdf->SetKeywords('Clientes, Relatório, PDF');
 
@@ -128,5 +132,5 @@ $pdf->Ln();
 // Adiciona a segunda tabela
 addTable($pdf, $headers2, $data2, true); // Passa true para ajustar a célula do ID
 
-$pdf->Output('lista_clientes.pdf', 'D');
+$pdf->Output('Relatorio_Clientes.pdf', 'D');
 ?>
