@@ -7,7 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #c8e3ee;
+            background-color: #ae6a55;
             display: flex;
             justify-content: center;
             align-items: center;

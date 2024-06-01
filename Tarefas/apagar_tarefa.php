@@ -8,6 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #ae6a55;
         }
 
         .modal-container {
@@ -87,7 +88,7 @@
     <script>
         function fecharModal() {
             // Redirecionar de volta para a página de listagem de tarefas
-            window.location.href = "/SCT/Cadastro_de_Tarefas/Tarefas/FRMListarTarefas.php";
+            window.location.href = "FRMListarTarefas.php";
         }
     </script>
 </body>

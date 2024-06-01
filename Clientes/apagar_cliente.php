@@ -8,6 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #ae6a55;
         }
 
         .modal-container {
@@ -91,7 +92,7 @@
     <script>
         function fecharModal() {
             // Redirecionar de volta para a página de listagem de clientes
-            window.location.href = "../php/FRMListarClientes.php";
+            window.location.href = "FRMListarClientes.php";
         }
     </script>
 </body>

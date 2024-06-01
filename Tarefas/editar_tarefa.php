@@ -8,7 +8,7 @@
 
     <style>
         body {
-            background-color: #c8e3ee;
+            background-color: #ae6a55;
             display: flex;
             justify-content: center;
             align-items: center;
