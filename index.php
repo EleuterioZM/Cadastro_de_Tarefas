@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Gestão de Tarefas</title>
+    <title>Meu Site Pessoal</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -12,23 +12,9 @@
 
     <!-- Cabeçalho -->
     <header id="header">
-        <h1 id="logo"><a href="index.html">Gestão de Tarefas</a></h1>
+        <h1 id="logo"><a href="index.html">Sistema de Cadastro</a></h1>
         <nav id="nav">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li>
-                    <a href="#">Tarefas</a>
-                    <ul>
-                        <li><a href="Tarefas/Cadastrar.html">Cadastrar</a></li>
-                        <li><a href="#">Buscar</a></li>
-                        <li><a href="#">Listar</a></li>
-                    </ul>
-                </li>
-                <li>
-                    
-                </li>
-               
-            </ul>
+           
         </nav>
     </header>
 
@@ -36,12 +22,12 @@
     <section id="banner">
         <div class="content">
             <header>
-                <h2>Gestão de Tarefas</h2>
-                <p>Bem-vindo ao sistema de gestão de tarefas.<br />
-                    Organize suas atividades de forma eficiente.</p><br>
-               
+                <h2>Um Novo Começo</h2>
+                <p>Seja bem-vindo ao meu site pessoal!<br />
+					  Aqui compartilho ideias e experiências.</p><br>
+			<a href="clientes_tarefas.php" class="button primary">Entrar</a>
             </header>
-         
+            <span class="image"><img src="images/4905798.jpg" alt="" /></span>
         </div>
     </section>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Meu Site Pessoal</title>
+    <title>Cadastro de tarefas</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -12,7 +12,11 @@
         }
         .button.green {
             background-color: green; /* Define a cor verde para o botão "Clientes" */
-            transition: none; /* Remove a transição no houver */
+            /* Remove a transição no houver */
+           
+        }
+        .button.houver{
+            transition: none;
         }
     </style>
 </head>
@@ -23,20 +27,7 @@
     <header id="header">
         <h1 id="logo"><a href="assets/css/images/arrow.svg">Sistema de Cadastro</a></h1>
         <nav id="nav">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li>
-                    <a href="#">Layouts</a>
-                    <ul>
-                        <li><a href="left-sidebar.html">Com Barra Lateral Esquerda</a></li>
-                        <li><a href="right-sidebar.html">Com Barra Lateral Direita</a></li>
-                        <li><a href="no-sidebar.html">Sem Barra Lateral</a></li>
-                       
-                    </ul>
-                </li>
-                <li><a href="elements.html">Elementos</a></li>
-                <li><a href="#" class="button primary">Registrar</a></li>
-            </ul>
+            
         </nav>
     </header>
 
@@ -44,7 +35,7 @@
     <section id="banner">
         <div class="content">
          
-           <p>podemos adicionar um texto</p>
+         
             
 			<div style="text-align: center; margin-top: 20px;">
 			    <a href="#" class="button primary">Tarefas</a>
