@@ -25,6 +25,7 @@
 
     <!-- Cabeçalho -->
     <header id="header">
+        
         <h1 id="logo"><a href="assets/css/images/arrow.svg">Sistema de Cadastro</a></h1>
         <nav id="nav">
             

@@ -5,7 +5,7 @@ require_once('../tcpdf/tcpdf.php');
 function addTitle($pdf)
 {
     $pdf->SetFont('helvetica', 'B', 16);
-    $pdf->Cell(0, 10, 'Relatório de Clientes', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'Relatório de Tarefas Diárias', 0, 1, 'C');
 }
 
 // Função para adicionar o cabeçalho da tabela
@@ -25,7 +25,7 @@ function addTableHeader($pdf, $headers, $cellWidths, $totalWidth)
 }
 
 // Função para adicionar uma tabela com os dados
-function addClientTable($pdf, $headers, $data, $styles)
+function addTaskTable($pdf, $headers, $data, $styles)
 {
     // Define o número máximo de linhas por página, excluindo o cabeçalho
     $maxRowsPerPage = 22;
@@ -47,6 +47,7 @@ function addClientTable($pdf, $headers, $data, $styles)
         if ($rowCount >= $maxRowsPerPage) {
             $pdf->AddPage();
             addTableHeader($pdf, $headers, $cellWidths, $totalWidth); // Adiciona cabeçalho na nova página
+            $pdf->SetFont($styles['font'], '', $styles['font_size']); // Garante que a fonte dos dados seja aplicada após a mudança de página
             $rowCount = 0; // Reinicia o contador de linhas
         }
         // Adiciona os dados da linha
@@ -67,9 +68,9 @@ $pdf->AddPage();
 // Configurações do documento
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Seu Nome');
-$pdf->SetTitle('Relatório de Clientes');
-$pdf->SetSubject('Relatório de Clientes');
-$pdf->SetKeywords('Clientes, Relatório, PDF');
+$pdf->SetTitle('Relatório de Tarefas Diárias');
+$pdf->SetSubject('Relatório de Tarefas Diárias');
+$pdf->SetKeywords('Tarefas, Relatório, PDF');
 
 $servername = "localhost";
 $username = "root";
@@ -84,7 +85,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para os dados da tabela
-$sql = "SELECT id, Empresa, Endereco, Contacto, Email, Data FROM clientes";
+$sql = "SELECT Item, Actividade, Recursos_Necessarios, Resp_Actividade, Observacoes , Data_Inicio, Data_Fim FROM tarefasdiarias";
 $result = $conn->query($sql);
 
 // Dados da tabela
@@ -96,22 +97,22 @@ if ($result->num_rows > 0) {
 }
 
 // Cabeçalho da tabela
-$headers = ['ID', 'Empresa', 'Endereço', 'Contacto', 'Email', 'Data'];
+$headers = ['Item', 'Atividade', 'Recursos Necessários', 'Resp. Atividade', 'Observações', 'Data Início', 'Data Fim'];
 
 // Estilos para a tabela
 $styles = [
     'font' => 'helvetica',
     'font_size' => 8,
-    'cell_widths' => [0.1, 0.25, 0.15, 0.15, 0.25, 0.1], // Proporções das colunas
+    'cell_widths' => [0.05, 0.15, 0.20, 0.20, 0.2, 0.1, 0.1], // Proporções das colunas
 ];
 
 // Adiciona o título
 addTitle($pdf);
 
 // Adiciona a tabela inicial ao PDF
-addClientTable($pdf, $headers, $data, $styles);
+addTaskTable($pdf, $headers, $data, $styles);
 
-$pdf->Output('Relatorio_Clientes.pdf', 'D');
+$pdf->Output('Relatorio_Tarefas_Diarias.pdf', 'D');
 
 $conn->close();
 ?>

@@ -1,33 +1,23 @@
-
-<nav id="main-nav">
-  <div class="wrapper">
-   
-    <ul class="nav-links">
-      <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
-      <li><a href="">Pagina Inicial</a></li>
-     
-      <li>
-        <a href="#" class="desktop-item">Tarefas</a>
-        <input type="checkbox" id="showDrop">
-        <label for="showDrop" class="mobile-item">Tarefas</label>
-        <ul class="drop-menu">
-        <li><a href="../Tarefas/FRMListarTarefas.php">Lista de Tarefas</a></li>
-            <li><a href="../Tarefas/Cadastrar.php">Cadastro Tarefa</a></li>
-          
-        </ul>
-      </li>
-      <li>
-        <a href="#" class="desktop-item">Clientes</a>
-        <input type="checkbox" id="showDrop">
-        <label for="showDrop" class="mobile-item">Clientes</label>
-        <ul class="drop-menu">
-        <li><a href="../Clientes/FRMListarClientes.php">Lista de Clientes</a></li>
-              <li><a href="../Clientes/Cadastrar.php">Cadastro Cliente</a></li>
-        
-        </ul>
-      </li>
-     
-    </ul>
-
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #1d1b1b;">
+  
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color: white;">Sistema de Cadastro</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="../index.php" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Tarefas/FRMListarTarefas.php" style="color: white;">Tarefas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Clientes/FRMListarClientes.php" style="color: white;">Clientes</a>
+        </li>
+       
+      </ul>
+    </div>
+  </div>
 </nav>
-
